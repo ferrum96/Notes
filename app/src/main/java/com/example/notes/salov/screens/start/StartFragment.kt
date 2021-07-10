@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.notes.salov.R
 import com.example.notes.salov.databinding.FragmentStartBinding
+import com.example.notes.salov.utilits.APP_ACTIVITY
 import com.example.notes.salov.utilits.TYPE_ROOM
 
 class StartFragment : Fragment() {
@@ -32,7 +34,9 @@ class StartFragment : Fragment() {
     private fun initialization() {
         mViewModel = ViewModelProvider(this).get(StartFragmentViewModel::class.java)
         mBinding.btnRoom.setOnClickListener {
-            mViewModel.initDataBase(TYPE_ROOM)
+            mViewModel.initDataBase(TYPE_ROOM) {
+                APP_ACTIVITY.mNavController.navigate(R.id.action_startFragment_to_mainFragment)
+            }
         }
     }
 
