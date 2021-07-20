@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.notes.salov.R
 import com.example.notes.salov.databinding.FragmentStartBinding
-import com.example.notes.salov.utilits.APP_ACTIVITY
-import com.example.notes.salov.utilits.TYPE_ROOM
+import com.example.notes.salov.utilits.*
 
 class StartFragment : Fragment() {
 
@@ -35,6 +34,29 @@ class StartFragment : Fragment() {
         mBinding.btnRoom.setOnClickListener {
             mViewModel.initDataBase(TYPE_ROOM) {
                 APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+            }
+        }
+
+        mBinding.btnFirebase.setOnClickListener {
+            val emailEditText = mBinding.inputEmail
+            val passwordEditText = mBinding.inputPassword
+            val loginBtn = mBinding.btnLogin
+            emailEditText.visibility = View.VISIBLE
+            passwordEditText.visibility = View.VISIBLE
+            loginBtn.visibility = View.VISIBLE
+            loginBtn.setOnClickListener {
+                val inputEmail = emailEditText.text.toString()
+                val inputPssword = passwordEditText.text.toString()
+                if (inputEmail.isNotEmpty() && inputPssword.isNotEmpty()) {
+                    EMAIL = inputEmail
+                    PASSWORD = inputPssword
+                    mViewModel.initDataBase(TYPE_FIREBASE) {
+                        showToast("OK")
+                        //APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+                    }
+                } else {
+                    showToast(getString(R.string.toast_wrong_enter))
+                }
             }
         }
     }
