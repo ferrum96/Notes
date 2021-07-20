@@ -51,8 +51,7 @@ class StartFragment : Fragment() {
                     EMAIL = inputEmail
                     PASSWORD = inputPssword
                     mViewModel.initDataBase(TYPE_FIREBASE) {
-                        showToast("OK")
-                        //APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+                        APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
                     }
                 } else {
                     showToast(getString(R.string.toast_wrong_enter))
