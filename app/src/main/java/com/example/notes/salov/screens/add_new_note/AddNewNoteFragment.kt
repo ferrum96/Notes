@@ -11,7 +11,6 @@ import com.example.notes.salov.databinding.FragmentAddNewNoteBinding
 import com.example.notes.salov.model.AppNote
 import com.example.notes.salov.utilits.APP_ACTIVITY
 import com.example.notes.salov.utilits.showToast
-import kotlinx.android.synthetic.main.fragment_add_new_note.*
 
 class AddNewNoteFragment : Fragment() {
 
@@ -34,15 +33,15 @@ class AddNewNoteFragment : Fragment() {
 
     private fun initialization() {
         mViewModel = ViewModelProvider(this).get(AddNewNoteViewModel::class.java)
-        btn_add_note.setOnClickListener {
-            val name = input_name_note.text.toString()
-            val text = input_text_note.text.toString()
+        mBinding.btnAddNote.setOnClickListener {
+            val name = mBinding.inputNameNote.text.toString()
+            val text = mBinding.inputTextNote.text.toString()
             if (name.isEmpty()) {
                 showToast(getString(R.string.toast_enter_name))
             } else {
-                //mViewModel.insert(AppNote(name = name, text = text)) {
-                    APP_ACTIVITY.mNavController.navigate(R.id.action_addNewNoteFragment_to_mainFragment)
-                //}
+                mViewModel.insert(AppNote(name = name, text = text)) {
+                    APP_ACTIVITY.navController.navigate(R.id.action_addNewNoteFragment_to_mainFragment)
+                }
             }
         }
     }

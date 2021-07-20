@@ -12,7 +12,6 @@ import com.example.notes.salov.R
 import com.example.notes.salov.databinding.FragmentMainBinding
 import com.example.notes.salov.model.AppNote
 import com.example.notes.salov.utilits.APP_ACTIVITY
-import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
 
@@ -47,8 +46,8 @@ class MainFragment : Fragment() {
         }
         mViewModel = ViewModelProvider(this).get(MainFragmentViewModel::class.java)
         mViewModel.allNotes.observe(this, mObserverList)
-        btn_add_note.setOnClickListener {
-            APP_ACTIVITY.mNavController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
+        mBinding.btnAddNote.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
         }
     }
 
@@ -59,4 +58,11 @@ class MainFragment : Fragment() {
         mRecyclerView.adapter = null
     }
 
+    companion object {
+        fun click(note: AppNote) {
+            val bundle = Bundle()
+            bundle.putSerializable("note", note)
+            APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_noteFragment, bundle)
+        }
+    }
 }
