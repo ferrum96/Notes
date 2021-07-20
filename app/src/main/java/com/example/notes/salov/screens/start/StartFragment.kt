@@ -10,6 +10,7 @@ import com.example.notes.salov.R
 import com.example.notes.salov.databinding.FragmentStartBinding
 import com.example.notes.salov.utilits.APP_ACTIVITY
 import com.example.notes.salov.utilits.TYPE_ROOM
+import kotlinx.android.synthetic.main.fragment_start.*
 
 class StartFragment : Fragment() {
 
@@ -32,7 +33,7 @@ class StartFragment : Fragment() {
 
     private fun initialization() {
         mViewModel = ViewModelProvider(this).get(StartFragmentViewModel::class.java)
-        mBinding.btnRoom.setOnClickListener {
+        btn_room.setOnClickListener {
             mViewModel.initDataBase(TYPE_ROOM) {
                 APP_ACTIVITY.mNavController.navigate(R.id.action_startFragment_to_mainFragment)
             }
