@@ -7,4 +7,8 @@ import com.example.notes.salov.utilits.REPOSITORIY
 class MainFragmentViewModel(application: Application) : AndroidViewModel(application) {
 
     val allNotes = REPOSITORIY.allNotes
+
+    fun exit() {
+        REPOSITORIY.signOut()
+    }
 }
