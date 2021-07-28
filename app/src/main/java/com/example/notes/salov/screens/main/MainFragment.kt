@@ -10,6 +10,7 @@ import com.example.notes.salov.R
 import com.example.notes.salov.databinding.FragmentMainBinding
 import com.example.notes.salov.model.AppNote
 import com.example.notes.salov.utilits.APP_ACTIVITY
+import com.example.notes.salov.utilits.AppPreference
 
 class MainFragment : Fragment() {
 
@@ -58,6 +59,7 @@ class MainFragment : Fragment() {
         when (item.itemId) {
             R.id.btn_exit -> {
                 mViewModel.exit()
+                AppPreference.setInitUser(false)
                 APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_startFragment)
             }
         }
